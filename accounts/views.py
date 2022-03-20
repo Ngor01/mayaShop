@@ -125,7 +125,7 @@ def resetpassword_validate(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         request.session['uid']  = uid
         messages.success(request, 'Please reset your password')
-        return redirect('login')
+        return redirect('resetPassword')
     else:
         messages.error(request, 'This link has expired!')
         return redirect('login')
