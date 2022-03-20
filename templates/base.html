@@ -91,14 +91,26 @@ $(document).ready(function() {
   				<span class="badge badge-pill badge-danger notify">{{cart_count}}</span>
   			</div>
   			<div class="widget-header icontext">
+          {% if user.id is None %}
   				<a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
   				<div class="text">
-  					<span class="text-muted">Welcome!</span>
+  					<span class="text-muted">Welcome! </span>
   					<div>
-  						<a href="#">Sign in</a> |
-  						<a href="#"> Register</a>
+  						<a href="{% url 'login' %}">Sign in</a> |
+  						<a href="{% url 'register' %}"> Register </a>
   					</div>
   				</div>
+          {% else %}
+          <a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
+          <div class="text">
+            <span class="text-muted">Welcome {{user.first_name}}</span>
+            <div>
+              <a href="{% url 'dashboard' %}">Dashboard </a> |
+              <a href="{% url 'logout' %}"> Logout </a>
+            </div>
+          </div>
+
+          {% endif %}
   			</div>
   		</div> <!-- widgets-wrap.// -->
   	</div> <!-- col.// -->
